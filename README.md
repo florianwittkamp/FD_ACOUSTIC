@@ -19,7 +19,7 @@ For higher temporal orders there are two methods available:
 
 To compare the effect of different orders of accuracy you can run the script FD_compare.m.
 
-### Literatur
+### Literature
 
 * Bohlen, T., & Wittkamp, F. (2016). Three-dimensional viscoelastic time-domain finite-difference seismic modelling using the staggered Adams–Bashforth time integrator. Geophysical Journal International, 204(3), 1781-1788.
 
