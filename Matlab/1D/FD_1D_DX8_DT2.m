@@ -53,13 +53,13 @@ dx=cmin/(fmax*c1);     % Spatial discretization (in m)
 dt=dx/(cmax)*c2;       % Temporal discretization (in s)
 lampda_min=cmin/fmax;  % Smallest wavelength
 
-% Ausgabe Modellparameter:
+% Output model parameter:
 disp(['Model size: x:',num2str(dx*nx),' in m']);
 disp(['Temporal discretization: ',num2str(dt),' s']);
 disp(['Spatial discretization: ',num2str(dx),' m']);
 disp(['Number of gridpoints per minimum wavelength: ',num2str(lampda_min/dx)]);
 
-% Bilde Ort- & Zeitvektor
+% Create space and time vector
 x=0:dx:(dx*nx-dx); % Space vector
 t=0:dt:(T-dt);     % Time vector
 nt=numel(t);       % Number of time steps
