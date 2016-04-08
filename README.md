@@ -5,20 +5,18 @@ The wave propagation is based on the first-order acoustic wave equation in stres
 
 ### Content
 
-In this repository 1-D and 2-D versions of the FD wave simulation codes are available. 
+In this repository 1-D and 2-D versions of FD wave simulation codes are available. 
 The source code can be found in Matlab/1D and Matlab/2D for the 1-D and 2-D version, respectively.
 
 Higher spatial orders are achieved by a classical Taylor expansion.
 
 For higher temporal orders there are two methods available:
 
-1. Lax–Wendroff method (only in 1-D). Theory: Dablain (1986)
+1. Lax–Wendroff method (only in 1-D). Theory: *Dablain (1986)*
 
-2. Adams-Bashforth method. Theory: Bohlen & Wittkamp (2016)
+2. Adams-Bashforth method. Theory: *Bohlen & Wittkamp (2016)*
 
-To explore the influence of different orders of accuracy you can run the script `FD_compare.m`.
-
-___
+To explore the influence of different orders of accuracy you can run the script `FD_1D_compare.m` or `FD_2D_compare.m`.
 
 ### Literature
 
@@ -30,4 +28,5 @@ ___
 
 
 ### Licence 
+
 This collection is available under the GNU General Public License v3.0. See the LICENCE file for more information.
