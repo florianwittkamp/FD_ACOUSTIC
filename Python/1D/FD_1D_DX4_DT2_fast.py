@@ -107,13 +107,13 @@ for n in range(2,nt):
         p[xscr]=p[xscr]+q[n]
 
         # Calculating spatial derivative
-        p_x=i_dx*9/8*(p[kx+1]-p[kx])-i_dx*1/24*(p[kx+2]-p[kx-1])
+        p_x=i_dx*9.0/8.0*(p[kx+1]-p[kx])-i_dx*1.0/24.0*(p[kx+2]-p[kx-1])
 
         # Update velocity
         vx[kx]=vx[kx]-dt/rho[kx]*p_x
 
         # Calculating spatial derivative
-        vx_x= i_dx*9/8*(vx[kx]-vx[kx-1])-i_dx*1/24*(vx[kx+1]-vx[kx-2])
+        vx_x= i_dx*9.0/8.0*(vx[kx]-vx[kx-1])-i_dx*1.0/24.0*(vx[kx+1]-vx[kx-2])
 
         # Update pressure
         p[kx]=p[kx]-l[kx]*dt*(vx_x);
