@@ -24,14 +24,14 @@ def coeff(order):
         print("Order has to be at least 4!")
         return
     ## Calculation
-    c=transpose(hstack((1, zeros((order/2-1),float))))
-    M=zeros((order/2,order/2),float)
+    c=transpose(hstack((1, zeros((int(order)/2-1),float))))
+    M=zeros((int(order)/2,int(order)/2),float)
     # Condition 1: \sum^{N/2}_{k=1} b_k(2k-1)=1
-    for n in range(1,order/2+1):
+    for n in range(1,int(order/2+1)):
         M[0,n-1]=(2*n-1)
     # Condition 2:  \sum^{N/2}_{k=1} b_k(2k-1)^(2j-1)=0; j=2,3...N/2
-    for j in range(2,order/2+1):
-        for n in range(1,order/2+1):
+    for j in range(2,int(order/2+1)):
+        for n in range(1,int(order/2+1)):
             M[j-1,n-1]=(2*n-1)**(2*j-1)
     coeff=transpose(dot(linalg.inv(M),c))
     return(coeff)
