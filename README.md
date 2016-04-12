@@ -1,6 +1,6 @@
 # Finite-Difference seismic wave simulation
 
-This is a collection of Matlab and Python scripts to simulate seismic wave propagation in 1-D and 2-D.
+This is a collection of **Matlab** and **Python** scripts to simulate **seismic wave propagation** in 1-D and 2-D.
 The wave propagation is based on the first-order acoustic wave equation in stress-velocity formulation (e.g. *Virieux (1986)*), which is solved by Finite-Differences.
 
 ### Content
@@ -29,4 +29,4 @@ To explore the influence of different orders of accuracy you can run the script 
 
 ### Licence
 
-This collection is available under the GNU General Public License v3.0. See the LICENCE file for more information.
+This collection is available under the GNU General Public License v3.0. See the `LICENCE` file for more information.

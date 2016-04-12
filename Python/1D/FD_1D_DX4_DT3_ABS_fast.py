@@ -146,6 +146,10 @@ for n in range(2,nt):
 
 toc = tm.clock()
 time=toc-tic
+print("Time: ",time," s")
+
+## Save seismograms
+save("Seismograms/FD_1D_DX4_DT3_ABS_fast",Seismogramm)
 
 ## Plot seismograms
 plt.figure(4)

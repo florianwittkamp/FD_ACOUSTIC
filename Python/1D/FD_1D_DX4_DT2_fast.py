@@ -80,7 +80,7 @@ plt.pause(0.001)
 
 # Source signal - Ricker-wavelet
 tau=pi*f0*(t-1.5/f0)
-q=q0*(1-2*tau**2)*exp(-tau**2)
+q=q0*(1.0-2.0*tau**2.0)*exp(-tau**2)
 
 # Plotting source signal
 plt.figure(3)
@@ -126,6 +126,9 @@ for n in range(2,nt):
 toc = tm.clock()
 time=toc-tic
 print("Time: ",time," s")
+
+## Save seismograms
+save("Seismograms/FD_1D_DX4_DT2_fast",Seismogramm)
 
 ## Plot seismograms
 plt.figure(4)

@@ -127,6 +127,10 @@ toc = tm.clock()
 time=toc-tic
 
 print(" Time: ",time," s")
+
+## Save seismograms
+save("Seismograms/FD_1D_DX8_DT2_fast",Seismogramm)
+
 ## Plot seismograms
 plt.figure(4)
 plt.plot(t,Seismogramm[0,:])
