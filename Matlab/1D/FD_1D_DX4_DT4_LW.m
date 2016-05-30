@@ -18,7 +18,8 @@
 %% Initialisation
 disp(' ');
 disp(['Starting ', mfilename ]);
-close all, clear all;
+close all; clearvars;
+addpath functions
 
 %% Input Parameter
 
