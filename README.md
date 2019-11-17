@@ -7,7 +7,7 @@ The wave propagation is based on the first-order acoustic wave equation in stres
 ### Content
 
 In this repository 1-D and 2-D versions of Finite-Difference wave simulation codes are available in Matlab and Python.
-The source code can be found in the directory `Matlab/` and `Python/`, respectively.
+The source code can be found in the directory `Matlab/`, `Python/` and `JupyterNotebook`, respectively.
 
 Higher spatial-orders are achieved by a classical Taylor expansion.
 
