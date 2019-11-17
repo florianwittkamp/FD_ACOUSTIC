@@ -20,8 +20,7 @@
 print(" ")
 print("Starting FD_1D_DX4_DT4_ABS")
 
-from numpy import *
-import time as tm
+import numpy as np
 import matplotlib.pyplot as plt
 
 ## Input Parameter
@@ -43,22 +42,22 @@ xrec2=800  # Position Reciever 2 (in grid points)
 xrec3=1800 # Position Reciever 3 (in grid points)
 
 # Velocity and density
-modell_v = hstack((1000*ones((around(nx/2)),float),1500*ones((around(nx/2)),float)))
-rho=hstack((1*ones((around(nx/2)),float),1.5*ones((around(nx/2)),float)))
+modell_v = np.hstack((1000*np.ones((np.int(nx/2))),1500*np.ones((np.int(nx/2)))))
+rho=np.hstack((1*np.ones((np.int(nx/2))),1.5*np.ones((np.int(nx/2)))))
 
 ## Preparation
 
 # Init wavefields
-vx=zeros((nx),float)
-p=zeros((nx),float)
-vx_x=zeros((nx),float)
-p_x=zeros((nx),float)
-vx_x2=zeros((nx),float)
-p_x2=zeros((nx),float)
-vx_x3=zeros((nx),float)
-p_x3=zeros((nx),float)
-vx_x4=zeros((nx),float)
-p_x4=zeros((nx),float)
+vx=np.zeros((nx),float)
+p=np.zeros((nx),float)
+vx_x=np.zeros((nx),float)
+p_x=np.zeros((nx),float)
+vx_x2=np.zeros((nx),float)
+p_x2=np.zeros((nx),float)
+vx_x3=np.zeros((nx),float)
+p_x3=np.zeros((nx),float)
+vx_x4=np.zeros((nx),float)
+p_x4=np.zeros((nx),float)
 
 # Calculate first Lame-Paramter
 l=rho * modell_v * modell_v
@@ -77,9 +76,9 @@ print("Spatial discretization: ",dx," m")
 print("Number of gridpoints per minimum wavelength: ",lampda_min/dx)
 
 # Create space and time vector
-x=arange(0,dx*nx,dx) # Space vector
-t=arange(0,T,dt)     # Time vector
-nt=size(t)           # Number of time steps
+x=np.arange(0,dx*nx,dx) # Space vector
+t=np.arange(0,T,dt)     # Time vector
+nt=np.size(t)           # Number of time steps
 
 # Plotting model
 plt.figure(1)
@@ -94,8 +93,8 @@ plt.draw()
 plt.pause(0.001)
 
 # Source signal - Ricker-wavelet
-tau=pi*f0*(t-1.5/f0)
-q=q0*(1-2*tau**2)*exp(-tau**2)
+tau=np.pi*f0*(t-1.5/f0)
+q=q0*(1-2*tau**2)*np.exp(-tau**2)
 
 # Plotting source signal
 plt.figure(3)
@@ -107,14 +106,13 @@ plt.draw()
 plt.pause(0.001)
 
 # Init Seismograms
-Seismogramm=zeros((3,nt),float); # Three seismograms
+Seismogramm=np.zeros((3,nt),float); # Three seismograms
 
 # Calculation of some coefficients
 i_dx=1.0/(dx)
 
 ## Time stepping
 print("Starting time stepping...")
-tic=tm.clock()
 for n in range(2,nt):
 
         # Inject source wavelet
@@ -128,10 +126,10 @@ for n in range(2,nt):
             # Update velocity
             vx[kx]=vx[kx]-dt/rho[kx]*(13.0/12.0*p_x[kx]-5.0/24.0*p_x2[kx]+1.0/6.0*p_x3[kx]-1.0/24.0*p_x4[kx])
 
-        # Save old spatial derivations for Adam-Bashforth method
-        copyto(p_x4,p_x3)
-        copyto(p_x3,p_x2)
-        copyto(p_x2,p_x)
+        # np.np.zeros old spatial derivations for Adam-Bashforth method
+        np.copyto(p_x4,p_x3)
+        np.copyto(p_x3,p_x2)
+        np.copyto(p_x2,p_x)
 
         # Update pressure
         for kx in range(5,nx-4):
@@ -142,18 +140,17 @@ for n in range(2,nt):
             # Update pressure
             p[kx]=p[kx]-l[kx]*dt*(13.0/12.0*vx_x[kx]-5.0/24.0*vx_x2[kx]+1.0/6.0*vx_x3[kx]-1.0/24.0*vx_x4[kx])
 
-        # Save old spatial derivations for Adam-Bashforth method
-        copyto(vx_x4,vx_x3)
-        copyto(vx_x3,vx_x2)
-        copyto(vx_x2,vx_x)
+        # np.np.zeros old spatial derivations for Adam-Bashforth method
+        np.copyto(vx_x4,vx_x3)
+        np.copyto(vx_x3,vx_x2)
+        np.copyto(vx_x2,vx_x)
 
-        # Save seismograms
+        # np.np.zeros seismograms
         Seismogramm[0,n]=p[xrec1]
         Seismogramm[1,n]=p[xrec2]
         Seismogramm[2,n]=p[xrec3]
 
-toc = tm.clock()
-time=toc-tic
+print("Finished time stepping!")
 
 ## Plot seismograms
 plt.figure(4)

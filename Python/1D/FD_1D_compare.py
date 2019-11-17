@@ -12,7 +12,7 @@
 # This script will read in the seismograms to compare them.
 
 ## Initialisation
-from numpy import *
+import numpy as np
 from matplotlib.pyplot import *
 
 ## Execute the following python code
@@ -23,11 +23,11 @@ from matplotlib.pyplot import *
 # python FD_1D_DX8_DT2_fast.py
 
 ## Read Seismograms
-FD_1D_DX4_DT2=load("Seismograms/FD_1D_DX4_DT2_fast.npy")
-FD_1D_DX4_DT3_ABS=load("Seismograms/FD_1D_DX4_DT3_ABS_fast.npy")
-FD_1D_DX4_DT4_ABS=load("Seismograms/FD_1D_DX4_DT4_ABS_fast.npy")
-FD_1D_DX4_DT4_LW=load("Seismograms/FD_1D_DX4_DT4_LW_fast.npy")
-FD_1D_DX8_DT2=load("Seismograms/FD_1D_DX8_DT2_fast.npy")
+FD_1D_DX4_DT2=np.load("Seismograms/FD_1D_DX4_DT2_fast.npy")
+FD_1D_DX4_DT3_ABS=np.load("Seismograms/FD_1D_DX4_DT3_ABS_fast.npy")
+FD_1D_DX4_DT4_ABS=np.load("Seismograms/FD_1D_DX4_DT4_ABS_fast.npy")
+FD_1D_DX4_DT4_LW=np.load("Seismograms/FD_1D_DX4_DT4_LW_fast.npy")
+FD_1D_DX8_DT2=np.load("Seismograms/FD_1D_DX8_DT2_fast.npy")
 
 ## Plotting
 figure(1)

@@ -12,10 +12,10 @@
 # as follow:
 # p_x = 1/DH * ( coeff(1) * (p(x+1)-p(x)) + coeff(2) * (p(x+2)-p(x-1)) )
 # where p_x is the derivative.
-from numpy import *
+import numpy as np
 def coeff(order):
     ## Check some conditions
-    if int(order)%2!=0:
+    if np.int(order)%2!=0:
         print("Error: coeff")
         print("Order has to be an integer multiple of 2!")
         return
@@ -24,14 +24,14 @@ def coeff(order):
         print("Order has to be at least 4!")
         return
     ## Calculation
-    c=transpose(hstack((1, zeros((int(order)/2-1),float))))
-    M=zeros((int(order)/2,int(order)/2),float)
+    c=np.transpose(np.hstack((1, np.zeros(np.int(order/2)-1))))
+    M=np.zeros((np.int(order/2),np.int(order/2)))
     # Condition 1: \sum^{N/2}_{k=1} b_k(2k-1)=1
-    for n in range(1,int(order/2+1)):
+    for n in range(1,np.int(order/2+1)):
         M[0,n-1]=(2*n-1)
     # Condition 2:  \sum^{N/2}_{k=1} b_k(2k-1)^(2j-1)=0; j=2,3...N/2
-    for j in range(2,int(order/2+1)):
-        for n in range(1,int(order/2+1)):
+    for j in range(2,np.int(order/2+1)):
+        for n in range(1,np.int(order/2+1)):
             M[j-1,n-1]=(2*n-1)**(2*j-1)
-    coeff=transpose(dot(linalg.inv(M),c))
+    coeff=np.transpose(np.dot(np.linalg.inv(M),c))
     return(coeff)

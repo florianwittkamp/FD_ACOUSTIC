@@ -13,7 +13,7 @@
 print(" ")
 print("Starting FD_1D_DX4_DT2_fast")
 
-from numpy import *
+import numpy as np
 import time as tm
 import matplotlib.pyplot as plt
 
@@ -36,14 +36,14 @@ xrec2=800  # Position Reciever 2 (in grid points)
 xrec3=1800 # Position Reciever 3 (in grid points)
 
 # Velocity and density
-modell_v = hstack((1000*ones((around(nx/2)),float),1500*ones((around(nx/2)),float)))
-rho=hstack((1*ones((around(nx/2)),float),1.5*ones((around(nx/2)),float)))
+modell_v = np.hstack((1000*np.ones((np.int(nx/2))),1500*np.ones((np.int(nx/2)))))
+rho=np.hstack((1*np.ones((np.int(nx/2))),1.5*np.ones((np.int(nx/2)))))
 
 ## Preparation
 
 # Init wavefields
-vx=zeros((nx),float)
-p=zeros((nx),float)
+vx=np.zeros(nx)
+p=np.zeros(nx)
 
 # Calculate first Lame-Paramter
 l=rho * modell_v * modell_v
@@ -62,9 +62,9 @@ print("Spatial discretization: ",dx," m")
 print("Number of gridpoints per minimum wavelength: ",lampda_min/dx)
 
 # Create space and time vector
-x=arange(0,dx*nx,dx) # Space vector
-t=arange(0,T,dt)     # Time vector
-nt=size(t)           # Number of time steps
+x=np.arange(0,dx*nx,dx) # Space vector
+t=np.arange(0,T,dt)     # Time vector
+nt=np.size(t)           # Number of time steps
 
 # Plotting model
 plt.figure(1)
@@ -79,8 +79,8 @@ plt.draw()
 plt.pause(0.001)
 
 # Source signal - Ricker-wavelet
-tau=pi*f0*(t-1.5/f0)
-q=q0*(1.0-2.0*tau**2.0)*exp(-tau**2)
+tau=np.pi*f0*(t-1.5/f0)
+q=q0*(1.0-2.0*tau**2.0)*np.exp(-tau**2)
 
 # Plotting source signal
 plt.figure(3)
@@ -92,15 +92,14 @@ plt.draw()
 plt.pause(0.001)
 
 # Init Seismograms
-Seismogramm=zeros((3,nt),float); # Three seismograms
+Seismogramm=np.zeros((3,nt)); # Three seismograms
 
 # Calculation of some coefficients
 i_dx=1.0/(dx)
-kx=arange(5,nx-4)
+kx=np.arange(5,nx-4)
 
 ## Time stepping
 print("Starting time stepping...")
-tic=tm.clock()
 for n in range(2,nt):
 
         # Inject source wavelet
@@ -123,12 +122,10 @@ for n in range(2,nt):
         Seismogramm[1,n]=p[xrec2]
         Seismogramm[2,n]=p[xrec3]
 
-toc = tm.clock()
-time=toc-tic
-print("Time: ",time," s")
+print("Finished time stepping!")
 
 ## Save seismograms
-save("Seismograms/FD_1D_DX4_DT2_fast",Seismogramm)
+np.save("Seismograms/FD_1D_DX4_DT2_fast",Seismogramm)
 
 ## Plot seismograms
 plt.figure(4)

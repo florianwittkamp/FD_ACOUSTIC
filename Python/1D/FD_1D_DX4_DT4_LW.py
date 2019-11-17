@@ -18,8 +18,7 @@
 print(" ")
 print("Starting FD_1D_DX4_DT4_LW")
 
-from numpy import *
-import time as tm
+import numpy as np
 import matplotlib.pyplot as plt
 
 ## Input Parameter
@@ -41,14 +40,14 @@ xrec2=800  # Position Reciever 2 (in grid points)
 xrec3=1800 # Position Reciever 3 (in grid points)
 
 # Velocity and density
-modell_v = hstack((1000*ones((around(nx/2)),float),1500*ones((around(nx/2)),float)))
-rho=hstack((1*ones((around(nx/2)),float),1.5*ones((around(nx/2)),float)))
+modell_v = np.hstack((1000*np.ones((np.int(nx/2))),1500*np.ones((np.int(nx/2)))))
+rho=np.hstack((1*np.ones((np.int(nx/2))),1.5*np.ones((np.int(nx/2)))))
 
 ## Preparation
 
 # Init wavefields
-vx=zeros((nx),float)
-p=zeros((nx),float)
+vx=np.zeros((nx),float)
+p=np.zeros((nx),float)
 
 # Calculate first Lame-Paramter
 l=rho * modell_v * modell_v
@@ -67,9 +66,9 @@ print("Spatial discretization: ",dx," m")
 print("Number of gridpoints per minimum wavelength: ",lampda_min/dx)
 
 # Create space and time vector
-x=arange(0,dx*nx,dx) # Space vector
-t=arange(0,T,dt)     # Time vector
-nt=size(t)           # Number of time steps
+x=np.arange(0,dx*nx,dx) # Space vector
+t=np.arange(0,T,dt)     # Time vector
+nt=np.size(t)           # Number of time steps
 
 # Plotting model
 plt.figure(1)
@@ -84,8 +83,8 @@ plt.draw()
 plt.pause(0.001)
 
 # Source signal - Ricker-wavelet
-tau=pi*f0*(t-1.5/f0)
-q=q0*(1-2*tau**2)*exp(-tau**2)
+tau=np.pi*f0*(t-1.5/f0)
+q=q0*(1-2*tau**2)*np.exp(-tau**2)
 
 # Plotting source signal
 plt.figure(3)
@@ -97,7 +96,7 @@ plt.draw()
 plt.pause(0.001)
 
 # Init Seismograms
-Seismogramm=zeros((3,nt),float); # Three seismograms
+Seismogramm=np.zeros((3,nt),float); # Three seismograms
 
 # Calculation of some coefficients
 i_dx=1.0/(dx)
@@ -106,7 +105,6 @@ c9=dt**3/24.0
 
 ## Time stepping
 print("Starting time stepping...")
-tic=tm.clock()
 for n in range(2,nt):
 
         # Inject source wavelet
@@ -115,7 +113,7 @@ for n in range(2,nt):
         # Update velocity
         for kx in range(5,nx-4):
             # Calculating spatial derivative
-            p_x=i_dx*9.0/8.0*(p[kx+1]-p[kx])-i_dx*1.0/24.0.0*(p[kx+2]-p[kx-1])
+            p_x=i_dx*9.0/8.0*(p[kx+1]-p[kx])-i_dx*1.0/24.0*(p[kx+2]-p[kx-1])
             p_xxx=i_dx3*(-3.0)*(p[kx+1]-p[kx])+i_dx3*(1)*(p[kx+2]-p[kx-1])
 
             # Update velocity
@@ -136,8 +134,7 @@ for n in range(2,nt):
         Seismogramm[1,n]=p[xrec2]
         Seismogramm[2,n]=p[xrec3]
 
-toc = tm.clock()
-time=toc-tic
+print("Finished time stepping!")
 
 ## Plot seismograms
 plt.figure(4)
