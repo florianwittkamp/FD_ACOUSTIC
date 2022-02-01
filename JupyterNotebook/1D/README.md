@@ -1,6 +1,6 @@
 # Jupyter Notebook Finite-Difference-Code
 
-The Jupyter Notebook Python Finite-Difference code is tested with **Python 2.7** and **3.7**. The modules **numpy** and **matplotlib** are required.
+The Jupyter Notebook Python Finite-Difference code is tested with **Python 3.9**. The modules **numpy** and **matplotlib** are required.
 
 There are two versions of each file. The one without `_fast` in the file name is identical to the Matlab version. The `_fast` versions use a vectorization of the loops over the grid points, which will speed up the code significantly.
 In Matlab this vectorization is done automatically in the background, therefore, no speed up could be archived by adding this to the Matlab code.  

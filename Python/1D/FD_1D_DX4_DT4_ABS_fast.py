@@ -42,8 +42,8 @@ xrec2=800  # Position Reciever 2 (in grid points)
 xrec3=1800 # Position Reciever 3 (in grid points)
 
 # Velocity and density
-modell_v = np.hstack((1000*np.ones((np.int(nx/2))),1500*np.ones((np.int(nx/2)))))
-rho=np.hstack((1*np.ones((np.int(nx/2))),1.5*np.ones((np.int(nx/2)))))
+modell_v = np.hstack((1000*np.ones((int(nx/2))),1500*np.ones((int(nx/2)))))
+rho=np.hstack((1*np.ones((int(nx/2))),1.5*np.ones((int(nx/2)))))
 
 ## Preparation
 
